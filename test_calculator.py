@@ -32,13 +32,24 @@ def test_divide():
     assert divide(-10, 2) == -5
 
 
+@pytest.mark.edge
 def test_divide_by_zero():
     """Test that dividing by zero raises an error."""
     with pytest.raises(ValueError):
         divide(10, 0)
 
 
+@pytest.mark.edge
 def test_power():
+    """Test power function with various inputs."""
     assert power(2, 3) == 8
     assert power(5, 0) == 1
     assert power(3, 2) == 9
+
+
+@pytest.mark.slow
+def test_power_large_numbers():
+    """Test power function with large numbers (performance test)."""
+    result = power(2, 20)
+    assert result == 1048576
+    assert power(10, 6) == 1000000
